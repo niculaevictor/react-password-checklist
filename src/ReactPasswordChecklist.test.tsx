@@ -110,6 +110,10 @@ describe("ReactPasswordChecklist Test Suite", () => {
 			const result = mount(<ReactPasswordChecklist rules={["specialChar"]} value="" />)
 			expect(result.find("span").text()).toEqual("Password has special characters.")
 		})
+		it("Displays the custom specialChar message", () => {
+			const result = mount(<ReactPasswordChecklist rules={["specialChar"]} customSpecialChar={/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,32})/} value="" />)
+			expect(result.find("span").text()).toEqual("Password has special characters.")
+		})
 		it("Sets invalid", () => {
 			const result = mount(<ReactPasswordChecklist rules={["specialChar"]} value="" />)
 			expect(result.find("li").hasClass("invalid")).toBeTruthy()

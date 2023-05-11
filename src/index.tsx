@@ -35,6 +35,7 @@ export interface ReactPasswordChecklistProps extends PasswordProps {
 	style?: React.CSSProperties
 	rules: Array<RuleNames>
 	rtl?: boolean
+	customSpecialChar?: RegExp
 }
 const ReactPasswordChecklist: React.FC<ReactPasswordChecklistProps> = ({
 	className,
@@ -47,6 +48,7 @@ const ReactPasswordChecklist: React.FC<ReactPasswordChecklistProps> = ({
 	rtl,
 	onChange,
 	messages = {},
+	customSpecialChar,
 	...remainingProps
 }) => {
 	const [isValid, setIsValid] = useState(false)
@@ -58,7 +60,7 @@ const ReactPasswordChecklist: React.FC<ReactPasswordChecklistProps> = ({
 			message: messages.minLength || `Password has at least ${minLength} characters.`,
 		},
 		specialChar: {
-			valid: /[~`¿¡!#$%\^&*€£@+÷=\-\[\]\\';,/{}\(\)|\\":<>\?\.\_]/g.test(value),
+			valid: customSpecialChar ? customSpecialChar.test(value) : /[~`¿¡!#$%\^&*€£@+÷=\-\[\]\\';,/{}\(\)|\\":<>\?\.\_]/g.test(value),
 			message: messages.specialChar || "Password has special characters.",
 		},
 		number: {
