@@ -111,7 +111,7 @@ describe("ReactPasswordChecklist Test Suite", () => {
 			expect(result.find("span").text()).toEqual("Password has special characters.")
 		})
 		it("Displays the custom specialChar message", () => {
-			const result = mount(<ReactPasswordChecklist rules={["specialChar"]} customSpecialChar={/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,32})/} value="" />)
+			const result = mount(<ReactPasswordChecklist rules={["specialChar"]} specialCharRegex={/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,32})/} value="" />)
 			expect(result.find("span").text()).toEqual("Password has special characters.")
 		})
 		it("Sets invalid", () => {
